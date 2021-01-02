@@ -55,6 +55,7 @@ Agent.prototype.update1 = function(noiseScale, noiseStrength, strokeWidth) {
   this.update(strokeWidth);
 };
 
+//questa parte a noi non serve
 Agent.prototype.update2 = function(noiseScale, noiseStrength, strokeWidth) {
   this.angle = myp5.noise(this.vector.x / noiseScale, this.vector.y / noiseScale) * 24;
   this.angle = (this.angle - myp5.floor(this.angle)) * noiseStrength;

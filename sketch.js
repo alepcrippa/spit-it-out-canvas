@@ -45,7 +45,9 @@ var counter = 0;
 
 var sketch = function(p) {
   var agents = [];
-  var agentCount = 100;
+  var init = 0;
+  var agentCount = 50;
+  var maxAgentCount = 100;
   var noiseScale = 500;
   var noiseStrength = 10;
   var overlayAlpha = 5;
@@ -57,7 +59,7 @@ var sketch = function(p) {
     p.createCanvas(p.windowWidth, p.windowHeight);
 
     for (var i = 0; i < agentCount; i++) {
-      agents[i] = new Agent();
+      agents[i] = new Agent(p.random(p.width), p.random(p.height));
     }
   };
 
@@ -68,7 +70,10 @@ var sketch = function(p) {
 
     // Draw agents
     p.stroke(0, agentAlpha);
-    for (var i = 0; i < agentCount; i++) {
+    if (agentCount > maxAgentCount){
+      init = agentCount - maxAgentCount;
+    }
+    for (var i = init; i < agentCount; i++) {
       if (drawMode == 1) agents[i].update1(noiseScale, noiseStrength, strokeWidth);
       else agents[i].update2(noiseScale, noiseStrength, strokeWidth);
     }
@@ -84,6 +89,17 @@ var sketch = function(p) {
     }
     if (p.keyCode == p.DELETE || p.keyCode == p.BACKSPACE) p.background(255);
   };
+
+  p.mouseClicked = function(){
+    agentCount++;
+    console.log("clicked")
+    console.log(agentCount);
+    agents[agentCount-1] = new Agent(p.mouseX, p.mouseY);
+    // if (drawMode == 1) agents[agentCount-1].update1(noiseScale, noiseStrength, strokeWidth);
+    // else agents[agentCount-1].update2(noiseScale, noiseStrength, strokeWidth);
+
+  }
+
 };
 
 var myp5 = new p5(sketch);

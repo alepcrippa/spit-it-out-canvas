@@ -1,7 +1,7 @@
 
 
-var Agent = function() {
-  this.vector = myp5.createVector(myp5.random(myp5.width), myp5.random(myp5.height));
+var Agent = function(x0,y0) {
+  this.vector = myp5.createVector(x0, y0);//myp5.random(myp5.width), myp5.random(myp5.height));
   this.vectorOld = this.vector.copy();
   this.stepSize = myp5.random(1, 5);
   this.isOutside = false;

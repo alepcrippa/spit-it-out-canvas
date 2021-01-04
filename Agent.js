@@ -9,10 +9,8 @@ var Agent = function(x0,y0) {
 };
 
 Agent.prototype.update = function(strokeWidth) {
-
   //pezzo preso dal codice che disegnava le scritte al click del mouse, con qualche modifica
   myp5.fill(0)
-   // if (myp5.mouseIsPressed && myp5.mouseButton == myp5.LEFT) {
     var d = myp5.dist(x,y, this.vector.x, this.vector.y);
     myp5.textSize(20);
     var newLetter = letters.charAt(counter);
@@ -33,7 +31,6 @@ Agent.prototype.update = function(strokeWidth) {
 
       x = x + myp5.cos(angle) * stepSize;
       y = y + myp5.sin(angle) * stepSize;
-    // }
   }
   //
 
@@ -45,19 +42,11 @@ Agent.prototype.update = function(strokeWidth) {
     this.vectorOld = this.vector.copy();
   }
   myp5.strokeWeight(strokeWidth * this.stepSize);
-  //myp5.line(this.vectorOld.x, this.vectorOld.y, this.vector.x, this.vector.y);
   this.vectorOld = this.vector.copy();
   this.isOutside = false;
 };
 
 Agent.prototype.update1 = function(noiseScale, noiseStrength, strokeWidth) {
   this.angle = myp5.noise(this.vector.x / noiseScale , this.vector.y / noiseScale) * noiseStrength;
-  this.update(strokeWidth);
-};
-
-//questa parte a noi non serve
-Agent.prototype.update2 = function(noiseScale, noiseStrength, strokeWidth) {
-  this.angle = myp5.noise(this.vector.x / noiseScale, this.vector.y / noiseScale) * 24;
-  this.angle = (this.angle - myp5.floor(this.angle)) * noiseStrength;
   this.update(strokeWidth);
 };

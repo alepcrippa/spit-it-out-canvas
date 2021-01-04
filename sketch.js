@@ -37,23 +37,18 @@ var letters = 'Così tra questa immensità s\'annega il pensier mio: e il naufra
 //'All the world\'s a stage, and all the men and women merely players. They have their exits and their entrances.';
 var fontSizeMin = 3;
 var angleDistortion = 0.0;
-
 var counter = 0;
-//
-
-'use strict';
 
 var sketch = function(p) {
   var agents = [];
   var init = 0;
-  var agentCount = 50;
-  var maxAgentCount = 100;
-  var noiseScale = 500;
+  var agentCount = 50; // initial agents
+  var maxAgentCount = 100; // max agents
+  var noiseScale = 500; // you can modify it to change the vorticity of the flux
   var noiseStrength = 10;
   var overlayAlpha = 5;
-  var agentAlpha = 100;
+  var agentAlpha = 10;
   var strokeWidth = 0.3;
-  var drawMode = 1;
 
   p.setup = function() {
     p.createCanvas(p.windowWidth, p.windowHeight);
@@ -74,15 +69,12 @@ var sketch = function(p) {
       init = agentCount - maxAgentCount;
     }
     for (var i = init; i < agentCount; i++) {
-      if (drawMode == 1) agents[i].update1(noiseScale, noiseStrength, strokeWidth);
-      else agents[i].update2(noiseScale, noiseStrength, strokeWidth);
+      agents[i].update1(noiseScale, noiseStrength, strokeWidth);
     }
   };
 
   p.keyReleased = function() {
     if (p.key == 's' || p.key == 'S') p.saveCanvas(gd.timestamp(), 'png');
-    if (p.key == '1') drawMode = 1;
-    if (p.key == '2') drawMode = 2;
     if (p.key == ' ') {
       var newNoiseSeed = p.floor(p.random(10000));
       p.noiseSeed(newNoiseSeed);
@@ -95,11 +87,7 @@ var sketch = function(p) {
     console.log("clicked")
     console.log(agentCount);
     agents[agentCount-1] = new Agent(p.mouseX, p.mouseY);
-    // if (drawMode == 1) agents[agentCount-1].update1(noiseScale, noiseStrength, strokeWidth);
-    // else agents[agentCount-1].update2(noiseScale, noiseStrength, strokeWidth);
-
   }
-
 };
 
 var myp5 = new p5(sketch);

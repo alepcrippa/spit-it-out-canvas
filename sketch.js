@@ -1,21 +1,27 @@
 
 /**
   * KEYS
- * 1-2                 : switch noise mode
  * space               : new noise seed
  * backspace           : clear screen
  * s                   : save png
  */
 
-
+let b1, b2, b3, b4;
+let p;
+let btn_text = 'AVANTI';
 var x = 0;
 var y = 0;
 var stepSize = 5.0;
 
+//impostazioni riconoscimento vocale ////
+let lang = 'en-US'; //|| 'it-IT'
+let speechRec = new p5.SpeechRec(lang, gotSpeech);
+
+
 var font = 'Georgia';
 var letters = 'Così tra questa immensità s\'annega il pensier mio: e il naufragar m\'è dolce in questo mare.'
 //'All the world\'s a stage, and all the men and women merely players. They have their exits and their entrances.';
-var fontSizeMin = 3;
+var fontSizeMin = 4;
 var angleDistortion = 0.0;
 var counter = 0;
 

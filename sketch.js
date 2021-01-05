@@ -7,7 +7,7 @@ var letters = 'ciao'
 //'Così tra questa immensità s\'annega il pensier mio: e il naufragar m\'è dolce in questo mare.'
 //'All the world\'s a stage, and all the men and women merely players. They have their exits and their entrances.';
 
-var fontSizeMin = 3;
+
 var angleDistortion = 0.0;
 var counter = 0;
 
@@ -15,7 +15,7 @@ var sketch = function(p) {
   var agents = [];
   var init = 0;
   var agentCount = 1; // initial agents
-  var maxAgentCount = 3; // max agents
+  var maxAgentCount = 50; // max agents
   var noiseScale = 500; // you can modify it to change the vorticity of the flux
   var noiseStrength = 10;
   var overlayAlpha = 5;
@@ -28,6 +28,7 @@ var sketch = function(p) {
     for (var i = 0; i < agentCount; i++) {
       agents[i] = new Agent(p.random(p.width), p.random(p.height));
     }
+    console.log(vol_1);
   };
 
   p.draw = function() {

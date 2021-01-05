@@ -10,18 +10,18 @@ class Agent{
     this.stepSize = myp5.random(1, 5);//lunghezza parola, sarebbe dasostituire con la lunghezza reale
     this.isOutside = false;
     this.angle;
+    this.letterIndex = 0;
   }
 
 update(strokeWidth) {
   //pezzo preso dal codice che disegnava le scritte al click del mouse, con qualche modifica
   myp5.fill(0)
-  mic = new p5.AudioIn();
-  mic.start();
-
-  vol = myp5.round(mic.getLevel(), 2);
-  vol_1 = myp5.map(vol, 0, 1, 5, 100);
-  
-
+  // mic = new p5.AudioIn();
+  // mic.start();
+  //
+  // vol = myp5.round(mic.getLevel(), 2);
+  // vol_1 = myp5.map(vol, 0, 1, 5, 100);
+  //
     var d = myp5.dist(x,y, this.vector.x, this.vector.y);
       //myp5.textFont(font, fontSizeMin);
       myp5.textSize(fontSizeMin * vol_1);

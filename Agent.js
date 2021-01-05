@@ -2,13 +2,15 @@
 var font = 'Georgia';
 var fontSizeMin = 4;
 
-var Agent = function(x0,y0) {
-  this.vector = myp5.createVector(x0, y0);//myp5.random(myp5.width), myp5.random(myp5.height));
-  this.vectorOld = this.vector.copy();
-  this.stepSize = myp5.random(1, 5);
-  this.isOutside = false;
-  this.angle;
-};
+class Agent{
+  constructor(x0,y0){
+    this.vector = myp5.createVector(x0, y0);//myp5.random(myp5.width), myp5.random(myp5.height));
+    this.vectorOld = this.vector.copy();
+    this.stepSize = myp5.random(1, 5);
+    this.isOutside = false;
+    this.angle;
+  }
+
 //QUESTO è COME DISTANZIA LE LETTERE NELL'ALTRO FILE
 
 // Shape.prototype.draw = function() {
@@ -41,7 +43,7 @@ var Agent = function(x0,y0) {
 //     }
 //   }
 
-Agent.prototype.update = function(strokeWidth) {
+update(strokeWidth) {
   //pezzo preso dal codice che disegnava le scritte al click del mouse, con qualche modifica
   myp5.fill(0)
     var d = myp5.dist(x,y, this.vector.x, this.vector.y);
@@ -80,7 +82,9 @@ Agent.prototype.update = function(strokeWidth) {
   this.isOutside = false;
 };
 
-Agent.prototype.update1 = function(noiseScale, noiseStrength, strokeWidth) {
+update1(noiseScale, noiseStrength, strokeWidth) {
   this.angle = myp5.noise(this.vector.x / noiseScale , this.vector.y / noiseScale) * noiseStrength;
   this.update(strokeWidth);
+};
+
 };

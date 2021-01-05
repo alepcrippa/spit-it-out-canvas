@@ -1,63 +1,72 @@
+// M_1_5_02
+//
+// Generative Gestaltung – Creative Coding im Web
+// ISBN: 978-3-87439-902-9, First Edition, Hermann Schmidt, Mainz, 2018
+// Benedikt Groß, Hartmut Bohnacker, Julia Laub, Claudius Lazzeroni
+// with contributions by Joey Lee and Niels Poldervaart
+// Copyright 2018
+//
+// http://www.generative-gestaltung.de
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
 /**
-  * KEYS
+ * noise values (noise 2d) are used to animate a bunch of agents.
+ *
+ * KEYS
+ * 1-2                 : switch noise mode
  * space               : new noise seed
  * backspace           : clear screen
  * s                   : save png
  */
 
-let b1, b2, b3, b4;
-let p;
-let btn_text = 'AVANTI';
+
 var x = 0;
 var y = 0;
-var stepSize = 1.0;
+var stepSize = 5.0;
 
-//impostazioni riconoscimento vocale ////
-let lang = 'en-US'; //|| 'it-IT'
-let speechRec = new p5.SpeechRec(lang, gotSpeech);
-
-
-var letters = ' ciao '
-//var letters = 'Così tra questa immensità s\'annega il pensier mio: e il naufragar m\'è dolce in questo mare.'
+//var font = 'Georgia';
+var letters = 'ciao'
+//'Così tra questa immensità s\'annega il pensier mio: e il naufragar m\'è dolce in questo mare.'
 //'All the world\'s a stage, and all the men and women merely players. They have their exits and their entrances.';
-
+var fontSizeMin = 3;
 var angleDistortion = 0.0;
 var counter = 0;
 
 var sketch = function(p) {
   var agents = [];
   var init = 0;
-  var agentCount = 50; // initial agents , numero di parole iniziali
-  var maxAgentCount = 100; // max agents
+  var agentCount = 1; // initial agents
+  var maxAgentCount = 3; // max agents
   var noiseScale = 500; // you can modify it to change the vorticity of the flux
   var noiseStrength = 10;
-  var overlayAlpha = 10;//opacità
-  var agentAlpha = 1;//opacità del bordo della scritta?
-  var strokeWidth = 0.3;//bordo della scritta in opacità
+  var overlayAlpha = 5;
+  var agentAlpha = 10;
+  var strokeWidth = 0.3;
 
   p.setup = function() {
     p.createCanvas(p.windowWidth, p.windowHeight);
 
     for (var i = 0; i < agentCount; i++) {
-      agents[i] = new Agent(p.random(p.width), p.random(p.height));//posizione iniziale dell'agente , random
+      agents[i] = new Agent(p.random(p.width), p.random(p.height));
     }
-
-    b1 = p.createButton('inserisci pensiero');
-    b1.position(p.width / 2 * 1.7, p.height / 2 * 0.1);
-    b1.mousePressed(popUp);
-    b1.id('startBtn');
   };
 
   p.draw = function() {
     p.fill(255, overlayAlpha);
     p.noStroke();
-    p.rect(0, 0, p.width, p.height);//opacità
+    p.rect(0, 0, p.width, p.height);
 
     // Draw agents
-    p.noStroke();//p.stroke(0, agentAlpha);
-
-    if (agentCount > maxAgentCount){//per settare un massimo
+    p.stroke(0, agentAlpha);
+    if (agentCount > maxAgentCount){
       init = agentCount - maxAgentCount;
     }
     for (var i = init; i < agentCount; i++) {
@@ -80,30 +89,6 @@ var sketch = function(p) {
     console.log(agentCount);
     agents[agentCount-1] = new Agent(p.mouseX, p.mouseY);
   }
-
-  function popUp() {
-    p.push();
-    p.rectMode('center');
-    p.fill('#8a2be2');
-    p.rect(p.width / 2, p.height / 2, p.width / 2.5, p.height / 2, 20)
-    p.push();
-    //bottone avanti
-    b2 = createButton('avanti');
-    b2.position(width / 2 - 80, height / 3 * 2);
-    b2.mousePressed(go);
-    b2.id('goBtn');
-  }
 };
-
-function gotSpeech() {
-  if (speechRec.resultValue) {
-     let text = speechRec.resultString;
-     letters = text;
-    //  p.position(width/2*0.8, height/2);
-    console.log(speechRec.resultString)
-  }
-}
-
-
 
 var myp5 = new p5(sketch);

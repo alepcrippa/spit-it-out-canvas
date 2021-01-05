@@ -1,4 +1,5 @@
 
+var font = 'Georgia';
 
 var Agent = function(x0,y0) {
   this.vector = myp5.createVector(x0, y0);//myp5.random(myp5.width), myp5.random(myp5.height));
@@ -7,12 +8,43 @@ var Agent = function(x0,y0) {
   this.isOutside = false;
   this.angle;
 };
+//QUESTO è COME DISTANZIA LE LETTERE NELL'ALTRO FILE
+
+// Shape.prototype.draw = function() {
+//   if (this.pendulumPath.length) { //SE CI SONO LE SCRITTE e quindi variabile != 0
+//     noStroke();
+//     fill(this.pendulumPathColor);
+//     this.letterIndex = 0;
+//     this.pendulumPath.forEach(function(pos, posIndex) {
+//       var newLetter = letters.charAt(this.letterIndex);//?
+// // tenere le tettere distanziate
+// var nextPosIndex = this.pendulumPath.findIndex(function(nextPos, nextPosIndex) {
+// if (nextPosIndex > posIndex) {
+//   var d = p5.Vector.dist(nextPos, pos);//distanza
+//   textSize(max(fontSizeMin, d));//dimensione delle lettere dipende dalla distanza tra loro
+//   return d > textWidth(newLetter);
+// } });
+//
+// var nextPos = this.pendulumPath[nextPosIndex];
+//
+// if (nextPos) {//scrivi la lettera vera e propria
+//     var angle = atan2(nextPos.y - pos.y, nextPos.x - pos.x); //tangente
+//     push();
+//     translate(pos.x, pos.y);
+//     rotate(angle);
+//     text(newLetter, 0, 0);
+//     pop();
+//     this.letterIndex++;
+//     if (this.letterIndex >= letters.length) {
+//       this.letterIndex = 0;
+//     }
+//   }
 
 Agent.prototype.update = function(strokeWidth) {
   //pezzo preso dal codice che disegnava le scritte al click del mouse, con qualche modifica
   myp5.fill(0)
     var d = myp5.dist(x,y, this.vector.x, this.vector.y);
-    myp5.textSize(20);
+    myp5.textSize(9);
     var newLetter = letters.charAt(counter);
     stepSize = myp5.textWidth(newLetter);
 

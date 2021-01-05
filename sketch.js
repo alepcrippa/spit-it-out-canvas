@@ -18,8 +18,8 @@ let lang = 'en-US'; //|| 'it-IT'
 let speechRec = new p5.SpeechRec(lang, gotSpeech);
 
 
-var font = 'Georgia';
-var letters = 'Così tra questa immensità s\'annega il pensier mio: e il naufragar m\'è dolce in questo mare.'
+var letters = ' considerevole '
+//var letters = 'Così tra questa immensità s\'annega il pensier mio: e il naufragar m\'è dolce in questo mare.'
 //'All the world\'s a stage, and all the men and women merely players. They have their exits and their entrances.';
 var fontSizeMin = 4;
 var angleDistortion = 0.0;
@@ -75,5 +75,14 @@ var sketch = function(p) {
     agents[agentCount-1] = new Agent(p.mouseX, p.mouseY);
   }
 };
+
+function gotSpeech() {
+  if (speechRec.resultValue) {
+     let text = speechRec.resultString;
+     letters = text;
+    //  p.position(width/2*0.8, height/2);
+    console.log(speechRec.resultString)
+  }
+}
 
 var myp5 = new p5(sketch);

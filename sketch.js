@@ -18,10 +18,10 @@ let lang = 'en-US'; //|| 'it-IT'
 let speechRec = new p5.SpeechRec(lang, gotSpeech);
 
 
-var letters = ' considerevole '
+var letters = ' ciao '
 //var letters = 'Così tra questa immensità s\'annega il pensier mio: e il naufragar m\'è dolce in questo mare.'
 //'All the world\'s a stage, and all the men and women merely players. They have their exits and their entrances.';
-var fontSizeMin = 4;
+
 var angleDistortion = 0.0;
 var counter = 0;
 
@@ -42,6 +42,11 @@ var sketch = function(p) {
     for (var i = 0; i < agentCount; i++) {
       agents[i] = new Agent(p.random(p.width), p.random(p.height));
     }
+
+    b1 = p.createButton('inserisci pensiero');
+    b1.position(p.width / 2 * 1.7, p.height / 2 * 0.1);
+    b1.mousePressed(popUp);
+    b1.id('startBtn');
   };
 
   p.draw = function() {
@@ -74,6 +79,19 @@ var sketch = function(p) {
     console.log(agentCount);
     agents[agentCount-1] = new Agent(p.mouseX, p.mouseY);
   }
+
+  function popUp() {
+    p.push();
+    p.rectMode('center');
+    p.fill('#8a2be2');
+    p.rect(p.width / 2, p.height / 2, p.width / 2.5, p.height / 2, 20)
+    p.push();
+    //bottone avanti
+    b2 = createButton('avanti');
+    b2.position(width / 2 - 80, height / 3 * 2);
+    b2.mousePressed(go);
+    b2.id('goBtn');
+  }
 };
 
 function gotSpeech() {
@@ -84,5 +102,7 @@ function gotSpeech() {
     console.log(speechRec.resultString)
   }
 }
+
+
 
 var myp5 = new p5(sketch);

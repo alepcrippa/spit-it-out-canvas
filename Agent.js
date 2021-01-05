@@ -1,5 +1,6 @@
 
 var font = 'Georgia';
+var fontSizeMin = 4;
 
 var Agent = function(x0,y0) {
   this.vector = myp5.createVector(x0, y0);//myp5.random(myp5.width), myp5.random(myp5.height));
@@ -44,7 +45,8 @@ Agent.prototype.update = function(strokeWidth) {
   //pezzo preso dal codice che disegnava le scritte al click del mouse, con qualche modifica
   myp5.fill(0)
     var d = myp5.dist(x,y, this.vector.x, this.vector.y);
-    myp5.textSize(9);
+      //myp5.textFont(font, fontSizeMin);
+      myp5.textSize(9);
     var newLetter = letters.charAt(counter);
     stepSize = myp5.textWidth(newLetter);
 

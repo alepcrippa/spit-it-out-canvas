@@ -11,7 +11,7 @@ let p;
 let btn_text = 'AVANTI';
 var x = 0;
 var y = 0;
-var stepSize = 5.0;
+var stepSize = 1.0;
 
 //impostazioni riconoscimento vocale ////
 let lang = 'en-US'; //|| 'it-IT'
@@ -28,19 +28,19 @@ var counter = 0;
 var sketch = function(p) {
   var agents = [];
   var init = 0;
-  var agentCount = 50; // initial agents
+  var agentCount = 50; // initial agents , numero di parole iniziali
   var maxAgentCount = 100; // max agents
   var noiseScale = 500; // you can modify it to change the vorticity of the flux
   var noiseStrength = 10;
-  var overlayAlpha = 5;
-  var agentAlpha = 10;
-  var strokeWidth = 0.3;
+  var overlayAlpha = 10;//opacità
+  var agentAlpha = 1;//opacità del bordo della scritta?
+  var strokeWidth = 0.3;//bordo della scritta in opacità
 
   p.setup = function() {
     p.createCanvas(p.windowWidth, p.windowHeight);
 
     for (var i = 0; i < agentCount; i++) {
-      agents[i] = new Agent(p.random(p.width), p.random(p.height));
+      agents[i] = new Agent(p.random(p.width), p.random(p.height));//posizione iniziale dell'agente , random
     }
 
     b1 = p.createButton('inserisci pensiero');
@@ -52,11 +52,12 @@ var sketch = function(p) {
   p.draw = function() {
     p.fill(255, overlayAlpha);
     p.noStroke();
-    p.rect(0, 0, p.width, p.height);
+    p.rect(0, 0, p.width, p.height);//opacità
 
     // Draw agents
-    p.stroke(0, agentAlpha);
-    if (agentCount > maxAgentCount){
+    p.noStroke();//p.stroke(0, agentAlpha);
+
+    if (agentCount > maxAgentCount){//per settare un massimo
       init = agentCount - maxAgentCount;
     }
     for (var i = init; i < agentCount; i++) {

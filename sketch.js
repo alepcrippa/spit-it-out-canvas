@@ -1,50 +1,77 @@
+/**
+ * noise values (noise 2d) are used to animate a bunch of agents.
+ *
+ * KEYS
+ * space               : new noise seed
+ * backspace           : clear screen
+ * s                   : save png
+ */
+
+
 var x = 0;
 var y = 0;
-var stepSize = 5;
+var stepSize = 0.01;
 
-//var font = 'Georgia';
-var letters = 'ciao'
+var font = 'Georgia';
+var letters = 'ciao ';
 //'Così tra questa immensità s\'annega il pensier mio: e il naufragar m\'è dolce in questo mare.'
-//'All the world\'s a stage, and all the men and women merely players. They have their exits and their entrances.';
+var fontSizeMin = 14;
 
-
-var angleDistortion = 0.0;
-var counter = 0;
+//impostazioni riconoscimento vocale //
+let lang = 'en-US'; //|| 'it-IT'
+let speechRec = new p5.SpeechRec(lang, gotSpeech);
+let vol_map = 10;
 
 var sketch = function(p) {
   var agents = [];
   var init = 0;
-  var agentCount = 1; // initial agents
-  var maxAgentCount = 50; // max agents
+  var agentCount = 0; // initial agents
+  var maxAgentCount = 10; // max agents
   var noiseScale = 500; // you can modify it to change the vorticity of the flux
   var noiseStrength = 10;
-  var overlayAlpha = 5;
-  var agentAlpha = 10;
+  var overlayAlpha = 0.01;
+  //var agentAlpha = 10;
   var strokeWidth = 0.3;
 
   p.setup = function() {
     p.createCanvas(p.windowWidth, p.windowHeight);
+    p.colorMode(p.HSB, 360, 100, 100); //colorMode(mode, max1, max2, max3, [maxA])
+    p.textFont(font, fontSizeMin);
 
-    for (var i = 0; i < agentCount; i++) {
-      agents[i] = new Agent(p.random(p.width), p.random(p.height));
+    b1 = p.createButton('microfono');
+    b1.position(p.width / 2 * 1.7, p.height / 2 * 0.1);
+    b1.mousePressed(microfono);
+    b1.id('startBtn');
+
+    mic = new p5.AudioIn();
+    mic.start();
+
+//togliere le seguenti tre righe se si vuole inserire tutti gli agents cliccando
+    for (var i = 0; i < agentCount; i++) { //così ci sono già di default #agentCount agents
+      agents[i] = new Agent(p.random(p.width), p.random(p.height), p.color(p.random(360), 80, 60), letters, vol_map);
     }
-    console.log(vol_1);
+
   };
 
   p.draw = function() {
+    p.frameRate(30);                    // questo per far brutalmente rallentare le scritte
     p.fill(255, overlayAlpha);
     p.noStroke();
     p.rect(0, 0, p.width, p.height);
 
     // Draw agents
-    p.stroke(0, agentAlpha);
     if (agentCount > maxAgentCount){
       init = agentCount - maxAgentCount;
     }
     for (var i = init; i < agentCount; i++) {
-      agents[i].update1(noiseScale, noiseStrength, strokeWidth);
+      agents[i].update(noiseScale, noiseStrength, strokeWidth);
     }
-  };
+
+    //volume
+    vol = p.round(mic.getLevel(), 2);
+    vol_map = p.map(vol, 0, 1, 1, 150);
+    console.log("volume " + vol_map);
+  } //fine draw;
 
   p.keyReleased = function() {
     if (p.key == 's' || p.key == 'S') p.saveCanvas(gd.timestamp(), 'png');
@@ -57,10 +84,34 @@ var sketch = function(p) {
 
   p.mouseClicked = function(){
     agentCount++;
-    console.log("clicked")
-    console.log(agentCount);
-    agents[agentCount-1] = new Agent(p.mouseX, p.mouseY);
+    console.log(agentCount + " agents");
+    agents[agentCount-1] = new Agent(p.mouseX, p.mouseY, p.color(p.random(360), 80, 60), letters, vol_map);
   }
-};
+
+
+p.keyReleased = function() {
+  if (p.keyCode == p.DELETE || p.keyCode == p.BACKSPACE){ background(255);
+    }
+  }
+
+  p.windowResized = function() {
+    resizeCanvas(windowWidth, windowHeight);
+  }
+
+}; //fine sketch
 
 var myp5 = new p5(sketch);
+
+function microfono(){
+  let continuous = true; //continua a registrare
+  let interim = false;
+  speechRec.start(continuous, interim);
+}
+
+function gotSpeech() {
+  if (speechRec.resultValue) {
+     let text = speechRec.resultString;
+     letters = text + ' ';
+     console.log(speechRec.resultString)
+  }
+}

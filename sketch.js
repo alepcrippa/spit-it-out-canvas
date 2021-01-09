@@ -116,7 +116,7 @@ function gotSpeech() {
      // vol = round(mic.getLevel(), 2);
      // vol_map = map(vol, 0, 1, 1, 150);
      // console.log("volume " + vol_map);
-     vol2= random(2,20);
-     console.log("random v " + vol2);
+     // vol2= random(2,20);
+     // console.log("random v " + vol2);
   }
 }

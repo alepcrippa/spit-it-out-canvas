@@ -88,14 +88,8 @@ var sketch = function(p) {
     agents[agentCount-1] = new Agent(p.mouseX, p.mouseY, p.color(p.random(360), 80, 60), letters, vol_map);
   }
 
-
-p.keyReleased = function() {
-  if (p.keyCode == p.DELETE || p.keyCode == p.BACKSPACE){ background(255);
-    }
-  }
-
   p.windowResized = function() {
-    resizeCanvas(windowWidth, windowHeight);
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
   }
 
 }; //fine sketch

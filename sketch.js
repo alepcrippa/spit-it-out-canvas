@@ -5,6 +5,9 @@
  * space               : new noise seed
  * backspace           : clear screen
  * s                   : save png
+ *
+ * to do
+ *
  */
 
 
@@ -20,7 +23,8 @@ var fontSizeMin = 14;
 //impostazioni riconoscimento vocale //
 let lang = 'en-US'; //|| 'it-IT'
 let speechRec = new p5.SpeechRec(lang, gotSpeech);
-let vol_map = 10;
+let vol_map;
+let vol2 =1;
 
 var sketch = function(p) {
   var agents = [];
@@ -33,8 +37,14 @@ var sketch = function(p) {
   //var agentAlpha = 10;
   var strokeWidth = 0.3;
 
+
   p.setup = function() {
     p.createCanvas(p.windowWidth, p.windowHeight);
+
+    mic = new p5.AudioIn();
+    mic.start();
+
+
     p.colorMode(p.HSB, 360, 100, 100); //colorMode(mode, max1, max2, max3, [maxA])
     p.textFont(font, fontSizeMin);
 
@@ -43,18 +53,17 @@ var sketch = function(p) {
     b1.mousePressed(microfono);
     b1.id('startBtn');
 
-    mic = new p5.AudioIn();
-    mic.start();
+
 
 //togliere le seguenti tre righe se si vuole inserire tutti gli agents cliccando
     for (var i = 0; i < agentCount; i++) { //così ci sono già di default #agentCount agents
-      agents[i] = new Agent(p.random(p.width), p.random(p.height), p.color(p.random(360), 80, 60), letters, vol_map);
+      agents[i] = new Agent(p.random(p.width), p.random(p.height), p.color(p.random(360), 80, 60), letters, vol2);
     }
 
   };
 
   p.draw = function() {
-    p.frameRate(30);                    // questo per far brutalmente rallentare le scritte
+    p.frameRate(9); // questo per far brutalmente rallentare le scritte
     p.fill(255, overlayAlpha);
     p.noStroke();
     p.rect(0, 0, p.width, p.height);
@@ -67,10 +76,6 @@ var sketch = function(p) {
       agents[i].update(noiseScale, noiseStrength, strokeWidth);
     }
 
-    //volume
-    vol = p.round(mic.getLevel(), 2);
-    vol_map = p.map(vol, 0, 1, 1, 150);
-    console.log("volume " + vol_map);
   } //fine draw;
 
   p.keyReleased = function() {
@@ -85,7 +90,7 @@ var sketch = function(p) {
   p.mouseClicked = function(){
     agentCount++;
     //console.log(agentCount + " agents");
-    agents[agentCount-1] = new Agent(p.mouseX, p.mouseY, p.color(p.random(360), 80, 60), letters, vol_map);
+    agents[agentCount-1] = new Agent(p.mouseX, p.mouseY, p.color(p.random(360), 80, 60), letters, vol2);
   }
 
   p.windowResized = function() {
@@ -107,5 +112,11 @@ function gotSpeech() {
      let text = speechRec.resultString;
      letters = text + ' ';
      console.log(speechRec.resultString)
+     // //volume
+     // vol = round(mic.getLevel(), 2);
+     // vol_map = map(vol, 0, 1, 1, 150);
+     // console.log("volume " + vol_map);
+     vol2= random(2,20);
+     console.log("random v " + vol2);
   }
 }

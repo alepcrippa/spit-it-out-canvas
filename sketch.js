@@ -29,7 +29,7 @@ var sketch = function(p) {
   var maxAgentCount = 10; // max agents
   var noiseScale = 500; // you can modify it to change the vorticity of the flux
   var noiseStrength = 10;
-  var overlayAlpha = 0.01;
+  var overlayAlpha = 0.04;
   //var agentAlpha = 10;
   var strokeWidth = 0.3;
 
@@ -84,7 +84,7 @@ var sketch = function(p) {
 
   p.mouseClicked = function(){
     agentCount++;
-    console.log(agentCount + " agents");
+    //console.log(agentCount + " agents");
     agents[agentCount-1] = new Agent(p.mouseX, p.mouseY, p.color(p.random(360), 80, 60), letters, vol_map);
   }
 

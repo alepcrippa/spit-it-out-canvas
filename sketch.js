@@ -66,17 +66,14 @@ var sketch = function(p) {
     p.frameRate(9); // questo per far brutalmente rallentare le scritte
     // //volume
     vol = p.round(mic.getLevel(), 2);
-    vol_map = p.map(vol, 0, 1, 1,30);
+    vol_map = p.map(vol, 0, 1, 1,150);
     console.log("volume " + vol_map);
-    // vol2= random(2,20);
-    // console.log("random v " + vol2);
 
     if ( p.getAudioContext().state !== 'running') {
-        p.text('non funziona audio', p.width/2, p.height/2);
+          p.text('non funziona audio', p.width/2, p.height/2);
       } else {
         p.text('audio abilitato',  p.width/2, p.height/2);
       }
-
 
 
     p.fill(255, overlayAlpha);

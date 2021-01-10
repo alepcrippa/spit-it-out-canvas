@@ -50,20 +50,35 @@ var sketch = function(p) {
 
     b1 = p.createButton('microfono');
     b1.position(p.width / 2 * 1.7, p.height / 2 * 0.1);
-    b1.mousePressed(microfono);
+    b1.mousePressed(listener);
     b1.id('startBtn');
 
 
 
 //togliere le seguenti tre righe se si vuole inserire tutti gli agents cliccando
     for (var i = 0; i < agentCount; i++) { //così ci sono già di default #agentCount agents
-      agents[i] = new Agent(p.random(p.width), p.random(p.height), p.color(p.random(360), 80, 60), letters, vol2);
+      agents[i] = new Agent(p.random(p.width), p.random(p.height), p.color(p.random(360), 80, 60), letters, vol_map);
     }
 
   };
 
   p.draw = function() {
     p.frameRate(9); // questo per far brutalmente rallentare le scritte
+    // //volume
+    vol = p.round(mic.getLevel(), 2);
+    vol_map = p.map(vol, 0, 1, 1,30);
+    console.log("volume " + vol_map);
+    // vol2= random(2,20);
+    // console.log("random v " + vol2);
+
+    if ( p.getAudioContext().state !== 'running') {
+        p.text('non funziona audio', p.width/2, p.height/2);
+      } else {
+        p.text('audio abilitato',  p.width/2, p.height/2);
+      }
+
+
+
     p.fill(255, overlayAlpha);
     p.noStroke();
     p.rect(0, 0, p.width, p.height);
@@ -90,33 +105,36 @@ var sketch = function(p) {
   p.mouseClicked = function(){
     agentCount++;
     //console.log(agentCount + " agents");
-    agents[agentCount-1] = new Agent(p.mouseX, p.mouseY, p.color(p.random(360), 80, 60), letters, vol2);
+    agents[agentCount-1] = new Agent(p.mouseX, p.mouseY, p.color(p.random(360), 80, 60), letters, vol_map);
+    if (p.getAudioContext().state !== 'running') {
+      p.getAudioContext().resume();
+    }
   }
 
   p.windowResized = function() {
     p.resizeCanvas(p.windowWidth, p.windowHeight);
   }
 
-}; //fine sketch
-
-var myp5 = new p5(sketch);
-
-function microfono(){
+listener = function(){
   let continuous = true; //continua a registrare
   let interim = false;
   speechRec.start(continuous, interim);
 }
+
+gotSpeech = function(){
+  let continuous = true; //continua a registrare
+  let interim = false;
+  speechRec.start(continuous, interim);
+  }
+
+}; //fine sketch
+
+var myp5 = new p5(sketch);
 
 function gotSpeech() {
   if (speechRec.resultValue) {
      let text = speechRec.resultString;
      letters = text + ' ';
      console.log(speechRec.resultString)
-     // //volume
-     // vol = round(mic.getLevel(), 2);
-     // vol_map = map(vol, 0, 1, 1, 150);
-     // console.log("volume " + vol_map);
-     // vol2= random(2,20);
-     // console.log("random v " + vol2);
   }
 }

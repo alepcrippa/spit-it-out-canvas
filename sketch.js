@@ -118,12 +118,6 @@ listener = function(){
   speechRec.start(continuous, interim);
 }
 
-gotSpeech = function(){
-  let continuous = true; //continua a registrare
-  let interim = false;
-  speechRec.start(continuous, interim);
-  }
-
 }; //fine sketch
 
 var myp5 = new p5(sketch);

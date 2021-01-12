@@ -22,6 +22,7 @@ class Agent{
     myp5.fill(this.col)
     var d = 0;
     this.pos = this.nextPos.copy();
+    myp5.textSize(myp5.max(fontSizeMin*this.vol, d));
 
     while(d <= myp5.textWidth(newLetter)){ //questo ciclo while serve a trovare la giusta nextPos
     this.angle = myp5.noise(this.nextPos.x / noiseScale , this.nextPos.y / noiseScale) * noiseStrength;
@@ -40,7 +41,7 @@ class Agent{
   } //fine while
 
     newLetter = this.privateLetters.charAt(this.letterIndex);
-    myp5.textSize(myp5.max(fontSizeMin*this.vol, d));
+    // myp5.textSize(myp5.max(fontSizeMin*this.vol, d));
     myp5.push();
     myp5.translate(this.pos.x, this.pos.y);
     let angle = myp5.atan2(this.nextPos.y - this.pos.y, this.nextPos.x - this.pos.x);

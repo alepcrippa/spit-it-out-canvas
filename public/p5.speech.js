@@ -107,7 +107,7 @@
           if(that.onStart!=undefined) that.onStart(e);
         };
         that.utterance.onpause = function(e) {
-          //console.log("PAUSED");
+          console.log("PAUSED");
           if(that.onPause!=undefined) that.onPause(e);
         };
         that.utterance.onresume = function(e) {

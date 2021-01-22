@@ -1,0 +1,404 @@
+
+body {
+  position: absolute;
+  position: fixed;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 0;
+  margin: 0;
+  top: 0%;
+  left: 0%;
+  font-family: 'fraktionsansL', sans-serif;
+  font-weight: normal;
+  font-size: 12pt;
+  text-decoration: none
+}
+
+
+.header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border-bottom-color: #000000;
+  border-bottom-style: dotted;
+  border-bottom-width: 1.5px;
+  align-content: space-between;
+}
+
+
+#logo {
+  width: 70px;
+  height: auto;
+  max-height: 50px;
+  margin: auto;
+  margin-left: 5%;
+  border: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  z-index: 1;
+}
+
+.voci2 {
+  line-height: 75px;
+  height: 100%;
+  text-align: center;
+  margin: auto;
+  border: none;
+  text-decoration: none;
+  color: #000000;
+  z-index: 0;
+}
+
+a:link, a:visited, .voci a:link, .voci a:visited{
+  text-decoration: none;
+  color: #000000;
+}
+
+
+.voci2{
+  font-family: 'typekaM', sans-serif;
+  position: absolute;
+  width: 10%;
+  height: 50%;
+  top: 25%;
+  right: 5%;
+  margin: 0;
+  border-left-color: #000000;
+  border-left-style: dotted;
+  border-left-width: 1.5px;
+}
+
+
+#diary {
+  width: 30%;
+  height: 100%;
+  padding:0;
+  right: 0%;
+  text-align: right;
+  line-height: 28.125px;
+  border: none;
+}
+
+#iconDiary{
+  top: 0%;
+  left:33%;
+  right: auto;
+  width: 35%;
+  height: 100%;
+  padding:0;
+  right: 0;
+  border: none;
+  background-image: url("../assets/image/06.1_Diary fermo.png");
+}
+
+#iconDiary:hover{
+  top: 0%;
+  left:33%;
+  right: auto;
+  width: 35%;
+  height: 100%;
+  padding:0;
+  right: 0;
+  border: none;
+  background-image: url("../assets/image/06.2_Diary.gif");
+}
+
+
+#diary:hover, #iconStadioHeader:hover, #headerTifo:hover {
+  border-bottom-style: none;
+}
+
+
+.testo {
+  text-align: left;
+  margin-left: 15%;
+  margin-left: 15%;
+  width: 70%;
+  float: left;
+}
+
+.testoPanel {
+  text-align: center;
+  width: 100%;
+}
+
+#testoSx{
+  margin:0;
+  padding:0;
+  width: 48%;
+  float: left;
+}
+
+#testoDx{
+  margin: 0;
+  margin-left: 2%;
+  padding:0;
+  width: 48%;
+  float: right;
+}
+
+#titolo1, #titolo2, #titolo3 {
+  font-family: 'typekaR', sans-serif;
+  margin-left: -5%;
+  font-size: 25pt;
+  letter-spacing: 2px
+}
+
+
+input {
+  font-family: 'typekaM', sans-serif;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  float: none;
+  margin: 0 10px 0 0;
+  padding: 0.5%;
+  width: 70pt;
+  height: 10pt;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: transparent;
+  border:0 none;
+  outline: none;
+  outline-style: none;
+  box-shadow: none;
+  border-color: transparent;
+}
+
+button,
+input[type="image"] {
+  border: none;
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  outline: none;
+  border: none;
+}
+
+#imgBt1{
+  color: #ffffff;
+  background-image: url("../assets/image/08.1_Bottone pieno fermo.png");
+}
+
+#imgBt2{
+  color: #000000;
+  background-image: url("../assets/image/09.1_Bottone traccia fermo.png");
+}
+
+#imgBt1:hover, #imgBt3:hover{
+  background-image: url("../assets/image/08.2_Bottone pieno.gif");
+}
+
+#imgBt2:hover{
+  background-image: url("../assets/image/09.2_Bottone traccia.gif");
+}
+
+
+
+#payOff{
+  margin-top: 10%
+}
+
+
+
+#arrow1, #arrow2 {
+  position: absolute;
+  top: 80%;
+  left: 48%;
+  width: 1.5%;
+  background-image: url("../assets/image/07.1_freccia navigazione ferma.png");
+}
+
+#arrow1:hover, #arrow2:hover {
+  background-image: url("../assets/image/07.2_freccia navigazione.gif");
+  transform: translateY(+5px)
+}
+
+#arrowPanel1, #arrowPanel2, #arrowPanel3, #arrowPanel4 {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: auto;
+  bottom:10%;
+  height: 25px;
+  width: 25px;
+  background-image: url("../assets/image/07.1_freccia navigazione ferma b.png");
+  transform: translateX(-50%);
+}
+
+#arrowPanel4 {
+  transform: rotate(+90deg) translateY(30%) translateX(10%) ;
+}
+
+#arrowPanel1:hover, #arrowPanel2:hover, #arrowPanel3:hover, #arrowPanel4:hover{
+  transform: translateX(-30%);
+}
+
+#arrowPanel4:hover {
+  transform: rotate(+90deg) translateY(30%) translateX(25%);
+}
+
+
+
+
+#arrow3 {
+  position: absolute;
+  top: 80%;
+  left: 48%;
+  width: 2%;
+  transform: rotate(+180deg);
+  background-image: url("../assets/image/07.1_freccia navigazione ferma.png");
+}
+
+#arrow3:hover {
+  background-image: url("../assets/image/07.2_freccia navigazione.gif");
+  transform: rotate(180deg) translateY(+5px);
+}
+
+
+
+#credits{
+  position: absolute;
+  bottom: 20%;
+  text-align: right;
+  right: 5%;
+  font-family:'typekaM'
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  width: 97.5%;
+  height: 100%;
+  margin-right: 2.5%;
+  font-size: 8pt;
+}
+
+.underlineCredits{
+  position: absolute;
+  bottom: 15.5%;
+  width: 10%;
+  right: 2%;
+  opacity: 0;
+}
+
+
+.underlineCredits:hover{
+  opacity: 1
+}
+
+.canvas{
+  position: absolute;
+  margin: 0 0 0 0;
+  left: 0;
+  top: 10%;
+  height: 85%;
+  width: 100%;
+  border: none;
+  outline:none;
+}
+
+#imgBt3{
+  position: absolute;
+  margin: 0;
+  bottom: 20%;
+  right: 5%;
+  color: #ffffff;
+  background-image: url("../assets/image/08.1_Bottone pieno fermo.png");
+}
+
+#imgBt4{
+  position: absolute;
+  margin: 0;
+  bottom: 69%;
+  width: 10px;
+  right: 6%;
+  color: #ffffff;
+  display: none;
+  /* background-image: url("../assets/image/08.1_Bottone pieno fermo.png"); */
+  z-index: 1;
+}
+
+#panel{
+  position: absolute;
+  margin: 0;
+  bottom: 20%;
+  right: 5%;
+  height: 55%;
+  width: 25%;
+  display: none;
+  background-color: #000000;
+  border-radius: 20px 20px 20px 20px;
+  z-index: 1;
+  border: none;
+  outline:none
+}
+
+
+input[type=range] {
+  width: 40pt;
+  margin: 0 0 0 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  background: #ffffff;
+  border: 0;
+  border-radius: 25px;
+  width: 100%;
+  height: 7.5px;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  margin-top: -6.25px;
+  width: 20px;
+  height: 20px;
+  background: #000000;
+  border: 2px solid #ffffff;
+  border-radius: 50px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ffffff;
+}
+
+.slider, .mic{
+  width: 90%;
+  height: 100px;
+  margin: 0 auto 20px auto;
+  font-family:'typekaM';
+  font-size: 8pt;
+}
+
+.mic{
+  background-image: url("../assets/image/04.1_Mic fermo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: 10px auto 5px auto;
+  cursor: pointer;
+}
+
+.phrase{
+  width: auto;
+  height: 30%;
+  margin: 0 auto 20px auto;
+  font-family:'typekaR';
+  font-size: 10pt;
+}

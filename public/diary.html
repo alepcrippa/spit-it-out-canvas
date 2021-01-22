@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>SpitItOut! | Diary</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+  <meta name="Resource-type" content="Document" />
+  <link rel="stylesheet" type="text/css" href="../assets/font/stylesheet.css" charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="../style/website.css">
+  <link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-database.js"></script>
+  <script src="../dist/fullpage.js" type="text/javascript"></script>
+  <script src="../dist/p5.min.js" type="text/javascript"></script>
+  <script src="../dist/p5.sound.min.js" type="text/javascript"></script>
+  <script src="p5.speech.js" type="text/javascript"></script>
+  <script src="Agent.js" type="text/javascript"></script>
+  <script src="sketch.js" type="text/javascript"></script>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      color: #000000;
+    }
+
+    #fp-nav ul li a.active span,
+    .fp-slidesNav ul li a.active span,
+    #fp-nav ul li:hover a.active span,
+    .fp-slidesNav ul li:hover a.active span{
+        border-radius: 100%;
+        background: #000000;
+     }
+    #fp-nav ul li a span,
+    .fp-slidesNav ul li a span {
+        border-radius: 50%;
+        position: absolute;
+        z-index: 1;
+        height: 8px;
+        width: 8px;
+        border: 0;
+        background: rgba(0, 0, 0, 0.1);
+        left: 0%;
+        top: 50%;
+        margin: -4px 0 0 -4px;
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        -o-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
+    }
+  	/* Centered texts in each section
+  	* --------------------------------------- */
+  	.section{
+  		text-align:center;
+  	}
+  	/* Fixed header and footer.
+  	* --------------------------------------- */
+  	#header, #footer{
+  		position:fixed;
+  		height: 10%;
+  		display:block;
+  		width: 100%;
+  		background-color: transparent;
+  		z-index:9;
+  		padding: 0 0 0 0;
+  	}
+
+  	#header{
+  		top:0px;
+  	}
+
+  	#footer{
+  		bottom:0px;
+      height: 5%;
+      border-top-color: #000000;
+      border-top-style: dotted;
+      border-top-width: 1.5px;
+      background-color: transparent
+    }
+
+    #section0 {
+      /* background-image: url(assets/paper1.jpg); */
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="header">
+    <div class="header">
+        <a href="../index.html#firstPage" class="header" id="logo"><img width="100%" src="../assets/logo/Logo_ext.png"></a>
+      <a href="diary.html" class="voci2">
+        <input class="voci2" id="iconDiary">
+        <p class="voci2" id="diary">Diary</p>
+      </a>
+    </div>
+  </div>
+
+<div id="fullpage">
+  <div class="section " id="section0">
+    <div class="intro">
+      <div class="canvas" id="canvas">
+      </div>
+      <iframe id="panel"  src="panel.html" >
+      </iframe>
+        <input type="image" id="imgBt3" value="Write diary" onclick="document.getElementById('panel').style.display ='flex'">
+    </div>
+  </div>
+  </div>
+
+
+  <div id="footer">
+    <div class="footer">
+      <p>© SpitItOut!  |  Privacy Notice – Cookie Notice  – FAQ</p>
+    </div>
+  </div>
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAsQYciSQ4IDRoOqRUBLiyNZ7IGuKQLkrU",
+    authDomain: "spititout-f748d.firebaseapp.com",
+    projectId: "spititout-f748d",
+    storageBucket: "spititout-f748d.appspot.com",
+    messagingSenderId: "1015109903379",
+    appId: "1:1015109903379:web:6f3efbde712829e068cbe6"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+</body>

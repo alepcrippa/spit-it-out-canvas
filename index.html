@@ -2,71 +2,322 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
+  <title>SpitItOut! | Home</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
-
+  <meta name="Resource-type" content="Document" />
+  <link rel="stylesheet" href="assets/font/stylesheet.css" type="text/css" charset="utf-8" />
+  <link href="./style/website.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="./dist/fullpage.css" />
+  <script src="./dist/p5.min.js"></script>
+  <!-- <script src="./dist/p5.sound.min.js"></script> -->
+  <script type="text/javascript" src="./dist/fullpage.js"></script>
+  <script src='./assets/typewriter/dist/core.js'></script>
   <style>
     body {
       padding: 0;
       margin: 0;
+      color: #000000;
     }
 
-    html,
-    body {
-      height: 100%;
+    #fp-nav ul li a.active span,
+    .fp-slidesNav ul li a.active span,
+    #fp-nav ul li:hover a.active span,
+    .fp-slidesNav ul li:hover a.active span{
+        border-radius: 100%;
+        background: #000000;
+     }
+    #fp-nav ul li a span,
+    .fp-slidesNav ul li a span {
+        border-radius: 50%;
+        position: absolute;
+        z-index: 1;
+        height: 8px;
+        width: 8px;
+        border: 0;
+        background: rgba(0, 0, 0, 0.1);
+        left: 0%;
+        top: 50%;
+        margin: -4px 0 0 -4px;
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        -o-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
+    }
+
+    /* Centered texts in each section
+  	* --------------------------------------- */
+    .section {
+      text-align: center;
+    }
+
+    /* Fixed header and footer.
+  	* --------------------------------------- */
+    #header,
+    #footer {
+      position: fixed;
+      height: 10%;
+      display: block;
       width: 100%;
-      overflow-x: hidden;
-      overflow-y: hidden;
+      background-color: transparent;
+      z-index: 9;
+      padding: 0 0 0 0;
     }
 
-    button,
-    input[type="submit"],
-    input[type="reset"] {
-      border: none;
-      border-radius: 15px;
-      padding: 10px;
-      cursor: pointer;
-      width: 10%;
+    #header {
+      top: 0px;
     }
 
-    button:focus {
-      outline: none;
+    #footer {
+      bottom: 0px;
+      height: 5%;
+      border-top-color: #000000;
+      border-top-style: dotted;
+      border-top-width: 1.5px;
+      background-color: transparent
     }
 
-    button:active {
-      outline: none;
-      border: none;
+    #section0 {
+      background-image: url(assets/image/paper1.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
-    #startBtn {
-      background: #666666;
-      color: #F9F9F9;
-      display: inline-block;
+    #section1 {
+      background-image: url(assets/image/paper2.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
-    #goBtn {
-      color: #666666;
-      background: #F9F9F9;
-      display: inline-block;
+    #section2 {
+      background-image: url(assets/image/paper3.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
-    #fBtn {
-      font-size: 20px;
-      color: #F9F9F9;
-      background: inherit;
-      display: inline-block;
-      width: 2%;
     }
   </style>
-
-  <script src="p5.min.js"></script>
-  <script src="p5.sound.min.js"></script>
-  <script src="p5.speech.js"></script>
-  <script src="Agent.js"></script>
-  <script src="sketch.js"></script>
 </head>
 
 <body>
-</body>
 
-</html>
+  <div id="header">
+    <div class="header">
+      <a href="index.html#firstPage" class="header" id="logo"><img width="100%" src="./assets/logo/Logo_ext.png"></a>
+      <a href="./public/diary.html" class="voci2">
+        <input class="voci2" id="iconDiary">
+        <p class="voci2" id="diary">Diary</p>
+      </a>
+    </div>
+  </div>
+
+
+
+
+  <div id="fullpage">
+    <div class="section " id="section0">
+      <div class="intro">
+        <div class="testo">
+
+          <p id="titolo1">A diary for everyone.</p>
+          <p id="testo1">Hello and welcome to <font face="typekaM" id="spit">spit it out!</font>,
+            <br> an online common secret diary!
+          </p>
+          <a href="./public/diary.html"><input type="image" id="imgBt1" value="Open diary"></a>
+          <a href="#secondPage"><input type="image" id="imgBt2" value="What is it?"></a>
+        </div>
+        <a href="#secondPage"><input id="arrow1"></a>
+        <a href="#3rdPage" id="credits">Credits</a>
+        <a href="#3rdPage"><img class="underlineCredits" src="./assets/image/01_sottolineatura.gif"></a>
+      </div>
+    </div>
+
+    <div class="section" id="section1">
+      <div class="slide" id="slide1">
+        <div class="intro">
+          <div class="testo">
+            <p id="titolo2">What is it? </p>
+            <div id="testoSx">
+              <p id="testo1">Our patience has been severely tested because of the lockdown implications.
+                We faced a lot of <font face="typekaM" id="faced">problems</font>, unexpected events and
+                other things that have threatened our mental integrity.
+                But we can <font face="typekaM" id="bring">bring out the best</font> from this situation:
+                now it’s your chance to tell everyone how you’re feeling
+                <font face="typekaM" id="through">through creativity!</font>
+              </p>
+            </div>
+            <div id="testoDx">
+              <p id="testo1">With this website you’ll be able to <font face="typekaM" id="record">record</font> your true emotions
+                and deep feelings in order to create a beautiful artwork
+                <font face="typekaM" id="collaboration">collaborating</font> with people around the world.
+                <br> Oh, and remember: this is a <font face="typekaM" id="secret">secret diary</font>, so your identity
+                will be hidden to other users…
+                <font face="typekaM" id="Feel">Feel free</font> to say what you really think, let’s start!
+              </p>
+
+            </div>
+            <a href="./public/diary.html"><input type="image" id="imgBt1" value="Open diary"></a>
+          </div>
+          <a href="#3rdPage"><input id="arrow2"></a>
+          <a href="#3rdPage" id="credits">Credits</a>
+          <a href="#3rdPage"><img class="underlineCredits" src="./assets/image/01_sottolineatura.gif"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="section2">
+      <div class="intro">
+        <div class="testo">
+          <p id="titolo3">Credits. </p>
+
+              <p id="testo1"><font face="typekaM" id="secret">Team members:</font>
+              <br> Brambilla Chiara, Crippa Alessandra, Moreschi Jessica, Repetto Matteo.
+              <br>
+              <p id="testo1"><font face="typekaM" id="secret">Course:</font>
+              <br> Creative Coding 2020/2021, Politecnico di Milano - Scuola del Design.
+              <br> Faculty: Benedetti Andrea, Elli Tommaso, Mauri Michele.
+              <br>
+              <br>
+              <br> Click <a href="https://drawwithcode.github.io/2020/" target="_blank">
+                   <font face="typekaM" id="secret">here</font></a> for more projects.
+          </p>
+        </div>
+        <a href="#firstPage"><input id="arrow3"></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div class="footer">
+      <p>© SpitItOut! | Privacy Notice – Cookie Notice – FAQ | Realized with P5js</p>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    var myFullpage = new fullpage('#fullpage', {
+      anchors: ['firstPage', 'secondPage', '3rdPage'],
+      // sectionsColor: ['#ffffff', '#ffffff', '#ffffff'],
+      navigation: true, //puntini di navigazione a lato
+      navigationPosition: 'right',
+      css3: true,
+      onSectionload: type1()
+    });
+
+    let prevUrl = '#firstPage';
+
+    window.setInterval(function() {
+      let url = window.location.hash;
+
+      if (url == '#secondPage') {
+        if (url != prevUrl) {
+          type2();
+          prevUrl = url
+        }
+      }
+      if (url == '#3rdPage') {
+        if (url != prevUrl) {
+          type3();
+          prevUrl = url
+        }
+      }
+      if (url == '#firstPage') {
+        if (url != prevUrl) {
+          type1();
+          prevUrl = url
+        }
+      }
+
+    }, 1)
+
+
+
+
+    function type1() {
+      const instance = new Typewriter('#titolo1', {
+        strings: ['A diary for everyone.'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 2000
+      });
+      new Typewriter('#spit', {
+        strings: ['spit it out!'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 100000
+      });
+    }
+
+    function type2() {
+      new Typewriter('#titolo2', {
+        strings: ['What is it?'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 2000
+      });
+      new Typewriter('#faced', {
+        strings: ['problems'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 100000
+      });
+      new Typewriter('#bring', {
+        strings: ['bring out the best'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 100000
+      });
+      new Typewriter('#through', {
+        strings: ['through creativity!'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 100000
+      });
+      new Typewriter('#record', {
+        strings: ['record'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 100000
+      });
+      new Typewriter('#collaboration', {
+        strings: ['collaborating'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 100000
+      });
+      new Typewriter('#secret', {
+        strings: ['secret diary'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 100000
+      });
+      new Typewriter('#Feel', {
+        strings: ['Feel free'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 100000
+      });
+    }
+
+    function type3() {
+      new Typewriter('#titolo3', {
+        strings: ['Credits.'],
+        autoStart: true,
+        loop: true,
+        deleteSpeed: 5,
+        pauseFor: 2000
+      });
+    }
+  </script>
+
+</body>

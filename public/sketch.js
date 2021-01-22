@@ -9,6 +9,8 @@
 
 var mycanvas
 
+var mySound;
+
 var x = 0;
 var y = 0;
 var stepSize = 0.01;
@@ -32,12 +34,16 @@ var vol_map;
 var vol2 = 1;
 var spoke = false;
 var vol_zero;
-var vol_text=4;
+var vol_text = 4;
 
 
 //impostazioni firebase
 var readData = []; //read data container
 var texts;
+
+function preload() {
+  mySound = loadSound('../assets/sound/typing-sound.mp3');
+}
 
 function setup() {
   //FIREBASE SETTINGS
@@ -50,6 +56,7 @@ function setup() {
   speechRec = new p5.SpeechRec(lang, gotSpeech);
   mic = new p5.AudioIn();
   mic.start();
+
 
   colorMode(RGB, 150, 150, 150); //colorMode(mode, max1, max2, max3, [maxA])
   textFont(font, fontSizeMin);
@@ -74,7 +81,7 @@ function draw() {
   // //volume
   vol = round(mic.getLevel(), 2);
   vol_map = map(vol, 0, 1, 10, 200);
-   console.log("volume " + vol_map);
+  console.log("volume " + vol_map);
 
   // if (getAudioContext().state !== 'running') {
   //   text('non funziona audio', width / 2, height / 2);
@@ -84,10 +91,10 @@ function draw() {
 
   //console.log("vol0 " + vol_zero);
   console.log("vol_text " + vol_text);
-  if (vol_map > vol_zero+8){
+  if (vol_map > vol_zero + 8) {
     vol_text = vol_map;
-    vol_zero =undefined;
-     console.log("vol_map > vol_zero !!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    vol_zero = undefined;
+    console.log("vol_map > vol_zero !!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   }
 
   //fill('rgba(255,255,255, overlayAlpha)');
@@ -123,32 +130,33 @@ function updateData(data) { //update text list
 
 
 function writeOnCanvas() {
-  if (spoke==true) {
-  var rCol=document.getElementById('panel').contentWindow.document.getElementById('slider1').value
-  var gCol=document.getElementById('panel').contentWindow.document.getElementById('slider2').value
-  var bCol=document.getElementById('panel').contentWindow.document.getElementById('slider3').value
+  if (spoke == true) {
+    var rCol = document.getElementById('panel').contentWindow.document.getElementById('slider1').value
+    var gCol = document.getElementById('panel').contentWindow.document.getElementById('slider2').value
+    var bCol = document.getElementById('panel').contentWindow.document.getElementById('slider3').value
 
-  agents[agentCount] = new Agent(mouseX, mouseY, color(rCol, gCol, bCol), letters, vol_text);
-  if (getAudioContext().state !== 'running') {
-    getAudioContext().resume();
-  }
-  //write data
-  var data = { //crate user data
-    xPos: mouseX,
-    yPos: mouseY,
-    rCol: rCol,
-    gCol: gCol,
-    bCol: bCol,
-    letters: letters,
-    vol_text: vol_text
-  }
-  texts.push(data); //push user data to the firebase collection
-  spoke = false;
-  let phrase=document.getElementById('panel').contentWindow.document.getElementById('phrase');
-  phrase.innerHTML=""
-  phrase.style.padding= '0 0 0 0';
+    agents[agentCount] = new Agent(mouseX, mouseY, color(rCol, gCol, bCol), letters, vol_text);
+    if (getAudioContext().state !== 'running') {
+      getAudioContext().resume();
+    }
+    //write data
+    var data = { //crate user data
+      xPos: mouseX,
+      yPos: mouseY,
+      rCol: rCol,
+      gCol: gCol,
+      bCol: bCol,
+      letters: letters,
+      vol_text: vol_text
+    }
+    texts.push(data); //push user data to the firebase collection
+    spoke = false;
+    let phrase = document.getElementById('panel').contentWindow.document.getElementById('phrase');
+    phrase.innerHTML = ""
+    phrase.style.padding = '0 0 0 0';
   }
   parent.document.getElementById('panel').style.display = 'none';
+  mySound.play()
 }
 
 function startMic() {

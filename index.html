@@ -23,26 +23,27 @@
     #fp-nav ul li a.active span,
     .fp-slidesNav ul li a.active span,
     #fp-nav ul li:hover a.active span,
-    .fp-slidesNav ul li:hover a.active span{
-        border-radius: 100%;
-        background: #000000;
-     }
+    .fp-slidesNav ul li:hover a.active span {
+      border-radius: 100%;
+      background: #000000;
+    }
+
     #fp-nav ul li a span,
     .fp-slidesNav ul li a span {
-        border-radius: 50%;
-        position: absolute;
-        z-index: 1;
-        height: 8px;
-        width: 8px;
-        border: 0;
-        background: rgba(0, 0, 0, 0.1);
-        left: 0%;
-        top: 50%;
-        margin: -4px 0 0 -4px;
-        -webkit-transition: all 0.1s ease-in-out;
-        -moz-transition: all 0.1s ease-in-out;
-        -o-transition: all 0.1s ease-in-out;
-        transition: all 0.1s ease-in-out;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 1;
+      height: 8px;
+      width: 8px;
+      border: 0;
+      background: rgba(0, 0, 0, 0.1);
+      left: 0%;
+      top: 50%;
+      margin: -4px 0 0 -4px;
+      -webkit-transition: all 0.1s ease-in-out;
+      -moz-transition: all 0.1s ease-in-out;
+      -o-transition: all 0.1s ease-in-out;
+      transition: all 0.1s ease-in-out;
     }
 
     /* Centered texts in each section
@@ -109,9 +110,12 @@
         <p class="voci2" id="diary">Diary</p>
       </a>
     </div>
+
   </div>
 
-
+<audio id="type-sound">
+  <source src="../assets/sound/typing-sound.mp3" type="audio/mpeg">
+</audio>
 
 
   <div id="fullpage">
@@ -170,16 +174,19 @@
         <div class="testo">
           <p id="titolo3">Credits. </p>
 
-              <p id="testo1"><font face="typekaM" id="secret">Team members:</font>
-              <br> Brambilla Chiara, Crippa Alessandra, Moreschi Jessica, Repetto Matteo.
-              <br>
-              <p id="testo1"><font face="typekaM" id="secret">Course:</font>
-              <br> Creative Coding 2020/2021, Politecnico di Milano - Scuola del Design.
-              <br> Faculty: Benedetti Andrea, Elli Tommaso, Mauri Michele.
-              <br>
-              <br>
-              <br> Click <a href="https://drawwithcode.github.io/2020/" target="_blank">
-                   <font face="typekaM" id="secret">here</font></a> for more projects.
+          <p id="testo1">
+            <font face="typekaM" id="secret">Team members:</font>
+            <br> Brambilla Chiara, Crippa Alessandra, Moreschi Jessica, Repetto Matteo.
+            <br>
+          <p id="testo1">
+            <font face="typekaM" id="secret">Course:</font>
+            <br> Creative Coding 2020/2021, Politecnico di Milano - Scuola del Design.
+            <br> Faculty: Benedetti Andrea, Elli Tommaso, Mauri Michele.
+            <br>
+            <br>
+            <br> Click <a href="https://drawwithcode.github.io/2020/" target="_blank">
+              <font face="typekaM" id="secret">here</font>
+            </a> for more projects.
           </p>
         </div>
         <a href="#firstPage"><input id="arrow3"></a>
@@ -195,6 +202,11 @@
 
 
   <script type="text/javascript">
+  var sound = document.getElementById("type-sound");
+
+
+function playVid() {
+}
     var myFullpage = new fullpage('#fullpage', {
       anchors: ['firstPage', 'secondPage', '3rdPage'],
       // sectionsColor: ['#ffffff', '#ffffff', '#ffffff'],
@@ -233,7 +245,7 @@
 
 
 
-    function type1() {
+    function type1() {sound.play();
       const instance = new Typewriter('#titolo1', {
         strings: ['A diary for everyone.'],
         autoStart: true,
@@ -248,6 +260,7 @@
         deleteSpeed: 5,
         pauseFor: 100000
       });
+
     }
 
     function type2() {

@@ -156,9 +156,10 @@ function writeOnCanvas() {
     phrase.style.padding = '0 0 0 0';
   }
   parent.document.getElementById('panel').style.display = 'none';
-  mySound.play()
+  //lag = sound.duration();
+  mySound.play();
 }
-
+var lag;
 function startMic() {
   vol_zero = vol_map;
   console.log("listening");
